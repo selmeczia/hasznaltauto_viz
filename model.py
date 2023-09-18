@@ -32,12 +32,14 @@ class CarPriceModel():
         return processed_df
 
 
-    def create_model(self, df):
+    def create_model(self, df_raw):
+
+        df = df_raw.copy()
 
         # Split df into features and target
-        features = df[self.FEATURE_COLS]
-        target = df[self.TARGET_COL]
-        
+        features = df[self.FEATURE_COLS].copy()
+        target = df[self.TARGET_COL].copy()
+
         # Create the model
         model = LinearRegression()
 
@@ -68,16 +70,17 @@ class CarPriceModel():
 
         # Fit the final model on the entire dataset
         model.fit(features, target)
-        predictions = model.predict(features)
+        final_predictions = model.predict(features)
 
-        df["predicted_price"] = predictions
+        # Assign the final predictions to the DataFrame
+        df["predicted_price"] = final_predictions
 
         return df
     
     def preprocess_df(self, df) -> pd.DataFrame:
         return df.dropna(axis=0)
 
-    def process_df(self, df) -> pd.DataFrame:
+    def process_df(self, df_raw) -> pd.DataFrame:
 
         # df['gas_type'] = np.where(df['gas_type_Benzin'] == 1, 'Benzin', 'Dízel')
         # df['comfort'] = np.where(df['comfort_trendline'] == 1,
@@ -87,7 +90,9 @@ class CarPriceModel():
         #                                 np.where(df["comfort_comfortline"] == 1, "comfortline", None)))
 
         # df['gas_type_code'] = df['gas_type'].astype('category').cat.codes
-        df['age'] = df["age_in_months"] / 12
+
+        df = df_raw.copy()
+        df['age'] = (df["age_in_months"] / 12)
 
         return df
 

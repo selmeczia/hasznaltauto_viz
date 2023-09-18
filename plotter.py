@@ -9,12 +9,12 @@ from plotly.offline import plot
 class PredictedPricePlot():
 
     def __call__(self, predicted_df: pd.DataFrame):
-        plot_html_str = self.create_plot(predicted_df, title="test title")
+        plot_html_str = self.create_plot(predicted_df)
 
         return plot_html_str
 
 
-    def create_plot(self, df, title):
+    def create_plot(self, df):
 
         data = [
             go.Scatter(
@@ -54,10 +54,10 @@ class PredictedPricePlot():
         layout = go.Layout(
             hovermode='closest',
             showlegend=False,
-            xaxis=dict(title="Price", tickfont=dict(size=14)),
-            yaxis=dict(title="Predicted Price", tickfont=dict(size=14)),
-            title=f"{title.capitalize()} Price Prediction",
-            font=dict(size=16)
+            xaxis=dict(title="Valós ár", tickfont=dict(size=14)),
+            yaxis=dict(title="Becsült ár", tickfont=dict(size=14)),
+            font=dict(size=16),
+            paper_bgcolor='rgba(0,0,0,0)'
         )
 
         # Build Figure
