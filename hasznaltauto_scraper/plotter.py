@@ -59,6 +59,7 @@ class PredictedPricePlot():
         # Build layout
         layout = go.Layout(
             hovermode='closest',
+            autosize=True,
             showlegend=False,
             xaxis=dict(title="Valós ár", tickfont=dict(size=14)),
             yaxis=dict(title="Becsült ár", tickfont=dict(size=14)),

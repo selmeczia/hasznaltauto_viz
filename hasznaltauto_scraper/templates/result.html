@@ -11,30 +11,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-    <div class="text-center display-1 text-light p-2">
-        Használtautó.hu vizualizátor
-    </div>
 
-
-    <!-- <div class="plot mt-2" id="plot-container">
-        {{ plot| safe}}
-    </div> -->
-
-
-    <div class="container">
-        <div class="container border rounded-5 shadow pt-5 pb-4 my-sm-5 m-1 bg-light text-dark mx-auto">
-    
-            <div class="container ms-5 ps-4">
-                <a class="btn btn-primary" href="/" role="button"><i class="bi bi-arrow-left-circle"></i> Vissza</a>
+    <div class="container h-100 d-flex flex-column">
+        <div class="row align-items-center">
+            <div class="text-center text-light display-1 p-md-2">
+                Használtautó.hu vizualizátor
             </div>
-            <div class="scatter-plot h-50">
-                {{ plot| safe}}
-            </div>
-            <div class="text-under-plot fw-light mx-5 px-4">
-                <i>
-                    A pontok az egyes autóhirdetéseket jelölik. A piros vonalon lévő autók vannak a modell szerint jól árazva. A vonaltól balra lévők az alul- a jobbra lévők pedig a felülárazott autók. <br>
-                    A pontok mérete a jármű kilométerórájára utal, minél kisebb, annál kevesebbet futott 
-                </i>
+        </div>
+        <div class="row flex-grow-1 bg-light text-dark  my-md-5 border rounded-5 shadow pt-5">
+            <div class="col", style="height: 85%;">
+                <div class="container ms-5 ps-4">
+                    <a class="btn btn-primary" href="/" role="button"><i class="bi bi-arrow-left-circle"></i> Vissza</a>
+                </div>
+                <div class="scatter-plot">
+                    {{ plot| safe}}
+                </div>
+                <div class="text-under-plot fw-light mx-5 px-4">
+                    <i>
+                        <ul>
+                            <li>
+                                A pontok az egyes autóhirdetéseket jelölik. A piros vonalon lévő autók vannak a modell szerint jól árazva. A vonaltól balra lévők az alul- a jobbra lévők pedig a felülárazott autók <br>
+                            </li>
+                            <li>
+                                A pontok mérete a jármű kilométerórájára utal, minél kisebb, annál kevesebbet futott 
+                            </li>
+                            <li>
+                                Az egyes pontokra kattintva megtekinthető a hirdetés
+                            </li>
+                        </ul>
+                    </i>
+                </div>
             </div>
         </div>
     </div>
