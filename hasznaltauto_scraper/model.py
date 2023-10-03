@@ -61,12 +61,17 @@ class CarPriceModel():
             # Make predictions on the testing set
             fold_predictions = model.predict(X_test)
 
+            # Ensure predictions are non-negative
+            fold_predictions = np.maximum(fold_predictions, 0)
+
             # Append the predictions to the array
             all_predictions.extend(fold_predictions)
+
 
         # Calculate RMSE on the entire dataset
         rmse = mean_squared_error(target, all_predictions, squared=False)
         print("RMSE:", rmse)
+
 
         # Fit the final model on the entire dataset
         model.fit(features, target)
@@ -81,15 +86,6 @@ class CarPriceModel():
         return df.dropna(axis=0)
 
     def process_df(self, df_raw) -> pd.DataFrame:
-
-        # df['gas_type'] = np.where(df['gas_type_Benzin'] == 1, 'Benzin', 'Dízel')
-        # df['comfort'] = np.where(df['comfort_trendline'] == 1,
-        #                         'trendline',
-        #                         np.where(df["comfort_highline"],
-        #                                 "highline",
-        #                                 np.where(df["comfort_comfortline"] == 1, "comfortline", None)))
-
-        # df['gas_type_code'] = df['gas_type'].astype('category').cat.codes
 
         df = df_raw.copy()
         df['age'] = (df["age_in_months"] / 12)

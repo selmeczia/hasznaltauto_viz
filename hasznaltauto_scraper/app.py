@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from scraper import HasznaltautoScraper
-from model import CarPriceModel
-from plotter import PredictedPricePlot
+from hasznaltauto_scraper.scraper import HasznaltautoScraper
+from hasznaltauto_scraper.model import CarPriceModel
+from hasznaltauto_scraper.plotter import PredictedPricePlot
 import time
 
 app = Flask(__name__)
@@ -37,4 +37,4 @@ def result():
         return render_template('result.html', input_link=input_link, plot=plot_html_str)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=80)

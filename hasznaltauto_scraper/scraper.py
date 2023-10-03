@@ -31,6 +31,7 @@ class HasznaltautoScraper():
 
     def __call__(self) -> pd.DataFrame:
         # data_folder = f"{os.getcwd()}/scraped_data/"
+        
 
         data = self.executor()
 
@@ -57,8 +58,11 @@ class HasznaltautoScraper():
 
 
     def get_last_page(self):
-        return int(self.soup.find("div", {"class": "text-center link-pager-container"}).find("li", {"class": "last"}).text)
-    
+        try:
+            return int(self.soup.find("div", {"class": "text-center link-pager-container"}).find("li", {"class": "last"}).text)
+        except AttributeError:
+            return 1
+
     def get_car_type(self):
         return self.soup.find("ul", {"class": "breadcrumb"}).find_all("li")[-1].find("a")["title"].replace("Eladó ", "").lower().replace(" ", "_")
     

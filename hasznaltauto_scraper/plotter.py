@@ -26,19 +26,25 @@ class PredictedPricePlot():
                 customdata=df["link"],
                 marker=dict(
                     color=df["age"],
+                    colorscale = "plotly3_r",
+                    colorbar=dict(
+                        title="Autó életkora <br> (év)",
+                        # orientation='h'
+                        # colorscale = "viridis_r"
+                    ),
                     showscale=True,
                     size=df["mileage_km"],
                     sizeref=2.*max(df["mileage_km"])/(50.**1),
                     sizemin=4,
-                    # line=dict(width=5, color=list(map(set_shape, df["comfort"])))
                 ),
                 hovertemplate =
-                    'Title: %{text}<br>'+
-                    'Predicted price: %{y:.3s} Ft <br>'+
-                    'Actual price: %{x:.3s} Ft <br>' + 
-                    'Age: %{marker.color:.1f} years <br>' +
-                    'Mileage: %{marker.size:,.0f} km'
-            )
+                    'Hirdetés címe: %{text}<br>'+
+                    'Becsült ár: %{y:.3s} Ft <br>'+
+                    'Valós ár: %{x:.3s} Ft <br>' + 
+                    'Autó életkora: %{marker.color:.1f} years <br>' +
+                    'Kilométeróra: %{marker.size:,.0f} km'
+                
+            ),
         ]
 
         line_trace = go.Scatter(
@@ -56,8 +62,13 @@ class PredictedPricePlot():
             showlegend=False,
             xaxis=dict(title="Valós ár", tickfont=dict(size=14)),
             yaxis=dict(title="Becsült ár", tickfont=dict(size=14)),
+            paper_bgcolor='rgba(0,0,0,0)',
             font=dict(size=16),
-            paper_bgcolor='rgba(0,0,0,0)'
+            margin={"l": 50,
+                    "r": 50,
+                    "b": 50,
+                    "t": 20,
+                    "pad": 4}
         )
 
         # Build Figure
