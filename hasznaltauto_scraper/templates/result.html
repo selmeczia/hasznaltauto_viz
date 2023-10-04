@@ -13,17 +13,46 @@
 </head>
 
 <body>
+    <div class="text-center display-1 text-light p-2">
+        Használtautó.hu vizualizátor
+    </div>
 
 
+    <!-- <div class="plot mt-2" id="plot-container">
+        {{ plot| safe}}
+    </div> -->
 
-    <div class="container bg-light text-dark border rounded-5 shadow d-flex flex-column vh-100">
-        <div class="row">
-            <div class="col">
-                <div class="text-center text-light display-1 p-md-2">
-                    Használtautó.hu vizualizátor
-                </div>
+
+    <div class="container">
+        <div class="container border rounded-5 shadow pt-5 pb-4 my-sm-5 m-1 bg-light text-dark mx-auto">
+
+            <div class="container ms-5 ps-4">
+                <a class="btn btn-primary" href="/" role="button"><i class="bi bi-arrow-left-circle"></i> Vissza</a>
+            </div>
+            <div class="scatter-plot", style="height: 60%;">
+                {{ plot| safe}}
+            </div>
+            <div class="text-under-plot fw-light mx-5 px-4">
+                <i>
+                    <ul>
+                        <li>
+                            A pontok az egyes autóhirdetéseket jelölik. A piros vonalon lévő autók vannak a modell szerint jól árazva. A vonaltól balra lévők az alul- a jobbra lévők pedig a felülárazott autók <br>
+                        </li>
+                        <li>
+                            A pontok mérete a jármű kilométerórájára utal, minél kisebb, annál kevesebbet futott 
+                        </li>
+                        <li>
+                            Az egyes pontokra kattintva megtekinthető a hirdetés
+                        </li>
+                    </ul>
+                </i>
             </div>
         </div>
+    </div>
+
+
+
+        <!-- <div class="container bg-light text-dark border rounded-5 shadow d-flex flex-column">
         <div class="row">
             <div class="col">
                 <div class="container ms-5 ps-4">
@@ -32,13 +61,12 @@
             </div>
         </div>
         <div class="row flex-grow-1">
-            <div class="col plot-container">
-                {{ plot|safe }}
-            </div>
-        </div>
-        <div class="row flex-shrink-1">
             <div class="col">
-                <div class="bottom-div">
+                <div class="plot">
+                    {{ plot|safe }}
+                </div>
+                <div class="bottom-text">
+    
                     <i>
                         <ul>
                             <li>
@@ -58,8 +86,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div> -->
+
 
 </body>
 
