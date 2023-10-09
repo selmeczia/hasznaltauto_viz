@@ -35,7 +35,7 @@ class HasznaltautoScraper():
         page_links = [f"{self.init_link}/page{page_num}" for page_num in range(1, self.last_page + 1)]
 
         if self.multiprocess_run:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
                 raw_results = list(executor.map(self.visit_page, page_links))
                 results = [item for sublist in raw_results for item in sublist]
         else:
