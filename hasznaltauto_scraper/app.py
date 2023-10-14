@@ -4,12 +4,16 @@ from hasznaltauto_scraper.model import CarPriceModel
 from hasznaltauto_scraper.plotter import PredictedPricePlot
 from hasznaltauto_scraper.data_validation import DataValidator
 import time
+import os
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    alert_message = session.pop('alert_message', None)
+
+    return render_template('index.html', alert=alert_message)
 
 @app.route('/result', methods=['POST'])
 def result():
@@ -41,7 +45,7 @@ def result():
             return render_template('result.html', input_link=input_link, plot=plot_html_str)
         
         else:
-
+            session['alert_message'] = 'Hibás link!'
             return redirect(url_for("index"))
 
 if __name__ == '__main__':
