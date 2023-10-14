@@ -28,6 +28,19 @@
         </div>
     </div>
 
+    {% if alert %}
+    <div class="container-lg">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill"></i> 
+            <strong>
+                {{ alert }}
+            </strong>
+            Kérlek ellenőrizd a megadott link helyességét!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="text-center display-1 text-light">
         Használtautó.hu vizualizátor
     </div>
@@ -63,17 +76,17 @@
                     lineáris regresszióval
                     <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#k-fold_cross-validation"
                         class="href">(K-fold keresztvalidálással)</a>
-                    a többi hirdetés alapján. Ezt a becsült árat egyszerre ábrázoljuk a valós árral, amiből megkaphatjuk
+                    a többi hirdetés alapján. Ezt a becsült árat egyszerre ábrázolja a valós árral, amiből megkaphatjuk
                     azt is, hogy melyik autó van alul-, valamint felülárazva.
                     <br>
                     <br>
 
                     A vizualizátor használatához másold be a kívánt <a
                         href="https://www.hasznaltauto.hu/">használtautó.hu</a> keresési linket a fenti mezőbe és a
-                    "Küldés" gombra kattintás után láthatóvá válik az ábra.
+                    "Küldés" gombra kattintás után láthatóvá válik az ábra. Próbáld úgy szűrni a hirdetéseket, hogy maximum 200-300 találatot tartalmazzon.
                     <br>
                     <br>
-                    A modell a becsléshez csupán az autó életkorát, motor méretét, teljesítményét és kilométeróra
+                    A modell a becsléshez csupán az autó életkorát, motor hengerűrtartalmát, teljesítményét és kilométeróra
                     állását használja fel, tehát nem veszi figyelembe a komfortfokozatot,
                     sérüléseket, felszereltséget és egyéb jellemzőket, amikor a becsült árat megállapítja. Emiatt a
                     becslések pontosságában lehetnek eltérések.
