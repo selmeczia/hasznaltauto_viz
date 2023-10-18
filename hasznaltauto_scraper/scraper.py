@@ -111,7 +111,6 @@ class HasznaltautoScraper():
                         }
                 )
 
-
         return data
         
 
