@@ -78,7 +78,7 @@ class CarPriceModel():
         final_predictions = model.predict(features)
 
         # Assign the final predictions to the DataFrame
-        df["predicted_price"] = final_predictions
+        df["predicted_price"] = np.maximum(final_predictions, 0)
 
         return df
     

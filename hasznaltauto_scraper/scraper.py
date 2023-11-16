@@ -35,7 +35,7 @@ class HasznaltautoScraper():
         page_links = [f"{self.init_link}/page{page_num}" for page_num in range(1, self.last_page + 1)]
 
         if self.multiprocess_run:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
                 raw_results = list(executor.map(self.visit_page, page_links))
                 results = [item for sublist in raw_results for item in sublist]
         else:
@@ -87,16 +87,6 @@ class HasznaltautoScraper():
                     except:
                         price = None
 
-                # comfort = "highline" if "highline" in title.lower() else \
-                #         "comfortline" if "comfortline" in title.lower() else \
-                #         "trendline" if "trendline" in title.lower() else None
-                
-                # comfort = "essentia" if "essentia" in title.lower() else \
-                #         "cosmo" if "cosmo" in title.lower() else \
-                #         "enjoy" if "enjoy" in title.lower() else \
-                #         "sport" if "sport" in title.lower() else \
-                #         "elegance" if "elegance" in title.lower() else None
-
                 link = ad.find("a", href=True)["href"]
                 year, month = next((re.split(r'/', item) for item in info_line if re.search(r'\d+/\d+', item)), (None, None))
                 age_in_months = self.calculate_car_age(year, month)
@@ -111,7 +101,6 @@ class HasznaltautoScraper():
                 {
                         "price": price,
                         "title": title,
-                        # "comfort" : comfort,
                         "gas_type": gas_type,
                         "age_in_months": age_in_months,
                         "motor_size": motor_size,
@@ -121,7 +110,6 @@ class HasznaltautoScraper():
                         "link": link,
                         }
                 )
-
 
         return data
         
@@ -152,16 +140,6 @@ class HasznaltautoScraper():
                     except:
                         price = None
 
-                # comfort = "highline" if "highline" in title.lower() else \
-                #         "comfortline" if "comfortline" in title.lower() else \
-                #         "trendline" if "trendline" in title.lower() else None
-                
-                # comfort = "essentia" if "essentia" in title.lower() else \
-                #         "cosmo" if "cosmo" in title.lower() else \
-                #         "enjoy" if "enjoy" in title.lower() else \
-                #         "sport" if "sport" in title.lower() else \
-                #         "elegance" if "elegance" in title.lower() else None
-
                 link = ad.find("a", href=True)["href"]
                 year, month = next((re.split(r'/', item) for item in info_line if re.search(r'\d+/\d+', item)), (None, None))
                 age_in_months = self.calculate_car_age(year, month)
@@ -176,7 +154,6 @@ class HasznaltautoScraper():
                     {
                         "price": price,
                         "title": title,
-                        # "comfort" : comfort,
                         "gas_type": gas_type,
                         "age_in_months": age_in_months,
                         "motor_size": motor_size,
@@ -204,14 +181,3 @@ class HasznaltautoScraper():
 
         return df
             
-      
-
-    
-
-
-
-
-
-       
-# df = pd.DataFrame(data)
-# df.to_csv(f"{data_folder}/{car_type}_6_1.4_benzin.csv")

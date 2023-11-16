@@ -1,4 +1,5 @@
 import re
+import requests
 
 class DataValidator():
     PREFIXES = ["https://","http://"]
@@ -10,8 +11,15 @@ class DataValidator():
 
     def is_valid(self):
         return not bool(self.errors)
-
+    
     def validate_link(self):
+        self.validate_link_str()
+
+        # only open link if link str is valid
+        if not self.errors:
+            self.validate_link_status_code()
+
+    def validate_link_str(self):
 
         link = self.link.lower()
 
@@ -21,3 +29,9 @@ class DataValidator():
 
         if not match or not match.end() == len(link):
             self.errors["link"] = "Link is not from predefined hosts"
+
+    def validate_link_status_code(self):
+
+        req = requests.get(self.link)
+        if not req.status_code == 200:
+            self.errors["status_code"] = f"Status code: {req.status_code}"

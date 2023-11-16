@@ -17,29 +17,25 @@
         Használtautó.hu vizualizátor
     </div>
 
-
-    <!-- <div class="plot mt-2" id="plot-container">
-        {{ plot| safe}}
-    </div> -->
-
-
     <div class="container">
         <div class="container border rounded-5 shadow pt-5 pb-4 my-sm-5 m-1 bg-light text-dark mx-auto">
 
             <div class="container ms-5 ps-4">
                 <a class="btn btn-primary" href="/" role="button"><i class="bi bi-arrow-left-circle"></i> Vissza</a>
             </div>
-            <div class="scatter-plot", style="height: 60%;">
+            <div class="scatter-plot" , style="height: 60%;" id="scatter-plot">
                 {{ plot| safe}}
             </div>
             <div class="text-under-plot fw-light mx-5 px-4">
                 <i>
                     <ul>
                         <li>
-                            A pontok az egyes autóhirdetéseket jelölik. A piros vonalon lévő autók vannak a modell szerint jól árazva. A vonaltól balra lévők az alul- a jobbra lévők pedig a felülárazott autók <br>
+                            A pontok az egyes autóhirdetéseket jelölik. A piros vonalon lévő autók vannak a modell
+                            szerint jól árazva. A vonal felett lévők az alulárazottak, a vonal alatt fekvő pontok pedig a felülárazott
+                            autók <br>
                         </li>
                         <li>
-                            A pontok mérete a jármű kilométerórájára utal, minél kisebb, annál kevesebbet futott 
+                            A pontok mérete a jármű kilométerórájára utal, minél kisebb, annál kevesebbet futott
                         </li>
                         <li>
                             Az egyes pontokra kattintva megtekinthető a hirdetés
@@ -50,44 +46,28 @@
         </div>
     </div>
 
-
-
-        <!-- <div class="container bg-light text-dark border rounded-5 shadow d-flex flex-column">
-        <div class="row">
-            <div class="col">
-                <div class="container ms-5 ps-4">
-                    <a class="btn btn-primary" href="/" role="button"><i class="bi bi-arrow-left-circle"></i> Vissza</a>
-                </div>
-            </div>
-        </div>
-        <div class="row flex-grow-1">
-            <div class="col">
-                <div class="plot">
-                    {{ plot|safe }}
-                </div>
-                <div class="bottom-text">
-    
-                    <i>
-                        <ul>
-                            <li>
-                                A pontok az egyes autóhirdetéseket jelölik. A piros vonalon lévő autók vannak a
-                                modell szerint jól árazva. A vonaltól balra lévők az alul-, a jobbra lévők pedig a
-                                felülárazott autók.
-                            </li>
-                            <li>
-                                A pontok mérete a jármű kilométerórájára utal, minél kisebb, annál kevesebbet
-                                futott.
-                            </li>
-                            <li>
-                                Az egyes pontokra kattintva megtekinthető a hirdetés.
-                            </li>
-                        </ul>
-                    </i>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
+    <script>
+        // Function to adjust the height of the element based on screen height
+        function adjustHeight() {
+          var scatterPlot = document.getElementById('scatter-plot');
+          var screenHeight = window.innerHeight;
+          console.log(screenHeight)
+      
+          if (screenHeight > 1000) {
+            // Set the height to 50%
+            scatterPlot.setAttribute("style","height:60%");
+          } else if (screenHeight > 750 & screenHeight < 1000) {
+            scatterPlot.setAttribute("style","height:50%");
+          } else {
+            // Set the height to its original value (60%)
+            scatterPlot.setAttribute("style","height:100%");
+          }
+        }
+      
+        // Call the function initially and attach it to the window's resize event
+        adjustHeight();
+        window.addEventListener('resize', adjustHeight);
+    </script>
 
 </body>
 

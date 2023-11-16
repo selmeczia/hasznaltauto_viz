@@ -1,4 +1,5 @@
 scraped_data/
 __pycache__/
 old/
-
+.vscode/
+test_plot_html.txt
